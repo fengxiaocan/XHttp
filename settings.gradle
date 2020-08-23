@@ -1,0 +1,2 @@
+include ':app', ':lib', ':androidlib'
+rootProject.name='XHttp'
