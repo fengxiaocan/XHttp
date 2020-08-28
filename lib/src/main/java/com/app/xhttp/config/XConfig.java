@@ -1,0 +1,214 @@
+package com.app.xhttp.config;
+
+
+public class XConfig implements IConfig {
+    private String cacheDir;//默认保存路径
+    private String saveDir;//默认保存路径
+    private String userAgent = "";//默认UA
+    private int sameTimeHttpRequestMaxCount = 50;//同时进行http请求的最大任务数
+    private int sameTimeDownloadMaxCount = 5;//同时下载的任务数
+    private int bufferedSize = 10 * 1024;//写文件buff大小，该数值大小不能小于2048，数值变小，下载速度会变慢,默认10kB
+    private boolean isUseBreakpointResume = true;//是否使用断点续传
+    private boolean ignoredProgress = false;//是否忽略下载的progress回调
+    private boolean ignoredSpeed = false;//是否忽略下载的速度回调
+    private boolean isUseAutoRetry = true;//是否使用出错自动重试
+    private int autoRetryTimes = 10;//自动重试次数
+    private int autoRetryInterval = 5;//自动重试间隔
+    private int updateProgressTimes = 1000;//更新进度条的间隔
+    private int updateSpeedTimes = 1000;//更新速度的间隔
+    private boolean defaultNameIsTime;//默认起名名称是否为以时间来命名
+    private boolean permitAllSslCertificate = true;//是否允许所有的SSL证书运行,即可以下载所有的https的连接
+    private int connectTimeOut = 30 * 1000;//连接超时单位为毫秒，默认30秒，该时间不能少于5秒
+    private int iOTimeOut = 20 * 1000;//设置IO流读取时间，单位为毫秒，默认20秒，该时间不能少于5秒
+
+    public XConfig(String cacheDir) {
+        this.cacheDir = cacheDir;
+        this.saveDir = cacheDir;
+    }
+
+    @Override
+    public XConfig cacheDir(String cacheDir) {
+        this.cacheDir = cacheDir;
+        this.saveDir = cacheDir;
+        return this;
+    }
+
+    @Override
+    public IConfig saveDir(String dir) {
+        this.saveDir = dir;
+        return this;
+    }
+
+    @Override
+    public IConfig sameTimeHttpRequestMaxCount(int sameTimeHttpRequestMaxCount) {
+        this.sameTimeHttpRequestMaxCount = sameTimeHttpRequestMaxCount;
+        return this;
+    }
+
+    @Override
+    public XConfig sameTimeDownloadMaxCount(int sameTimeDownloadCount) {
+        this.sameTimeDownloadMaxCount = sameTimeDownloadCount;
+        return this;
+    }
+
+    @Override
+    public XConfig userAgent(String userAgent) {
+        this.userAgent = userAgent;
+        return this;
+    }
+
+    @Override
+    public XConfig bufferedSize(int buffSize) {
+        this.bufferedSize = buffSize;
+        return this;
+    }
+
+
+    @Override
+    public XConfig isUseBreakpointResume(boolean isUseBreakpointResume) {
+        this.isUseBreakpointResume = isUseBreakpointResume;
+        return this;
+    }
+
+    @Override
+    public XConfig ignoredProgress(boolean ignoredProgress) {
+        this.ignoredProgress = ignoredProgress;
+        return this;
+    }
+
+    @Override
+    public XConfig ignoredSpeed(boolean ignoredSpeed) {
+        this.ignoredSpeed = ignoredSpeed;
+        return this;
+    }
+
+    @Override
+    public XConfig isUseAutoRetry(boolean isUseAutoRetry) {
+        this.isUseAutoRetry = isUseAutoRetry;
+        return this;
+    }
+
+    @Override
+    public XConfig autoRetryTimes(int autoRetryTimes) {
+        this.autoRetryTimes = autoRetryTimes;
+        return this;
+    }
+
+    @Override
+    public XConfig autoRetryInterval(int autoRetryInterval) {
+        this.autoRetryInterval = autoRetryInterval;
+        return this;
+    }
+
+    @Override
+    public XConfig updateProgressTimes(int updateProgressTimes) {
+        this.updateProgressTimes = updateProgressTimes;
+        return this;
+    }
+
+    @Override
+    public XConfig updateSpeedTimes(int updateSpeedTimes) {
+        this.updateSpeedTimes = updateSpeedTimes;
+        return this;
+    }
+
+    @Override
+    public XConfig permitAllSslCertificate(boolean permitAllSslCertificate) {
+        this.permitAllSslCertificate = permitAllSslCertificate;
+        return this;
+    }
+
+    @Override
+    public XConfig connectTimeOut(int connectTimeOut) {
+        this.connectTimeOut = connectTimeOut;
+        return this;
+    }
+
+    @Override
+    public IConfig iOTimeOut(int iOTimeOut) {
+        this.iOTimeOut = iOTimeOut;
+        return this;
+    }
+
+    @Override
+    public IConfig defaultNameIsTime(boolean isTime) {
+        defaultNameIsTime=isTime;
+        return this;
+    }
+
+    public String getCacheDir() {
+        return cacheDir;
+    }
+
+    public String getSaveDir() {
+        return saveDir;
+    }
+
+    public int getBufferedSize() {
+        return bufferedSize;
+    }
+
+    public int getSameTimeHttpRequestMaxCount() {
+        return sameTimeHttpRequestMaxCount;
+    }
+
+    public int getSameTimeDownloadMaxCount() {
+        return sameTimeDownloadMaxCount;
+    }
+
+    public boolean isUseBreakpointResume() {
+        return isUseBreakpointResume;
+    }
+
+    public boolean isIgnoredProgress() {
+        return ignoredProgress;
+    }
+
+    public boolean isUseAutoRetry() {
+        return isUseAutoRetry;
+    }
+
+    public int getAutoRetryTimes() {
+        return autoRetryTimes;
+    }
+
+    public int getAutoRetryInterval() {
+        return autoRetryInterval;
+    }
+
+    public int getUpdateProgressTimes() {
+        return updateProgressTimes;
+    }
+
+    public boolean isPermitAllSslCertificate() {
+        return permitAllSslCertificate;
+    }
+
+    public int getConnectTimeOut() {
+        return connectTimeOut;
+    }
+
+    public int getiOTimeOut() {
+        return iOTimeOut;
+    }
+
+    public boolean isIgnoredSpeed() {
+        return ignoredSpeed;
+    }
+
+    public int getUpdateSpeedTimes() {
+        return updateSpeedTimes;
+    }
+
+    public boolean isDefaultNameIsTime() {
+        return defaultNameIsTime;
+    }
+
+    public synchronized String getUserAgent() {
+        if (userAgent == null) {
+            userAgent = UserAgent.Mac;
+        }
+        return userAgent;
+    }
+
+}
