@@ -33,6 +33,7 @@ public enum MimeType {
     anim(".anim[1-9j]", "video/x-anim"),
     anx(".anx", "application/annodex"),
     ape(".ape", "audio/x-ape"),
+    apk(".apk", "application/vnd.android"),
     arj(".arj", "application/x-arj"),
     arw(".arw", "image/x-sony-arw"),
     as(".as", "application/x-applix-spreadsheet"),
